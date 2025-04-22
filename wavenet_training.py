@@ -104,7 +104,7 @@ class WavenetTrainer:
 
             predictions = torch.max(output, 1)[1].view(-1)
             correct_pred = torch.eq(target, predictions)
-            accurate_classifications += tensor.item()
+            accurate_classifications += correct_pred.sum().item()
         # print("validate model with " + str(len(self.dataloader.dataset)) + " samples")
         # print("average loss: ", total_loss / len(self.dataloader))
         avg_loss = total_loss / len(self.dataloader)
