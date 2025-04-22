@@ -302,7 +302,8 @@ class WaveNetModel(nn.Module):
             # set new input
             x = Variable(torch.from_numpy(x).type(torch.LongTensor))
             input.zero_()
-            input = input.scatter_(1, x.view(1, -1, 1), 1.).view(1, self.classes, 1)
+            input = input.scatter_(1, first_samples[0:1].view(1, -1, 1).long(), 1.)
+
 
             if (i + 1) == 100:
                 toc = time.time()
