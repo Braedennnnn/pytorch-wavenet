@@ -257,7 +257,7 @@ class WaveNetModel(nn.Module):
         total_samples = num_given_samples + num_samples
 
         input = Variable(torch.FloatTensor(1, self.classes, 1).zero_())
-        input = input.scatter_(1, first_samples[0:1].view(1, -1, 1), 1.)
+        input = input.scatter_(1, first_samples[0:1].view(1, -1, 1).long(), 1.)
 
         # fill queues with given samples
         for i in range(num_given_samples - 1):
