@@ -51,8 +51,9 @@ class DilatedQueue:
         self.dtype = dtype
         if data == None:
             self.data = Variable(dtype(num_channels, max_length).zero_())
-
+    
     def enqueue(self, input):
+        input = input.squeeze(-1)  # Make input shape [batch_size]
         self.data[:, self.in_pos] = input
         self.in_pos = (self.in_pos + 1) % self.max_length
 
